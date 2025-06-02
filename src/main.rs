@@ -6,6 +6,7 @@ fn main() {
 
     let matches = cli::cli();
     let input = matches.get_one::<String>("input").unwrap();
+    let columns = matches.get_one::<usize>("columns").unwrap();
 
     let file = fs::File::open(&input);
     let file = match file {
@@ -16,7 +17,6 @@ fn main() {
         },
     };
 
-    const BUFFER_SIZE: usize = 16;
-    hd::dump(&file, BUFFER_SIZE);
+    hd::dump(&file, columns);
 
 }

@@ -8,6 +8,14 @@ pub fn cli() -> ArgMatches {
         .help("Input file")
         .required(true)
     )
+    .arg(
+        Arg::new("columns")
+        .short('c')
+        .long("columns")
+        .required(false)
+        .default_value(&"16")
+        .value_parser(clap::value_parser!(usize))
+    )
     .get_matches();
     matches
 

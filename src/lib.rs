@@ -2,13 +2,13 @@ use std::io::{BufReader, Read};
 use std::fs;
 
 
-pub fn dump(file: &fs::File, columns: usize) -> () {
+pub fn dump(file: &fs::File, columns: &usize) -> () {
     let file_size: usize = file.metadata().unwrap().len().try_into().unwrap();
     let magnitude: usize = ((file_size / columns).ilog10() + 1).try_into().unwrap();
     let mut reader = BufReader::new(file);
-    let mut buffer = vec![0; columns];
+    let mut buffer = vec![0; *columns];
     let mut counter = 0;
-    print_header(magnitude, columns);
+    print_header(magnitude, *columns);
     loop {
         match reader.read(&mut buffer) {
             Ok(0) => break, // EOF reached
