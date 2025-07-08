@@ -3,6 +3,8 @@ use clap::{command, Arg, ArgMatches};
 pub fn cli() -> ArgMatches {
 
     let matches = command!()
+    .author("Jakub Němeček")
+    .about("Hex dump utility")
     .arg(
         Arg::new("input")
         .help("Input file")
